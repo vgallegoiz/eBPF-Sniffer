@@ -62,7 +62,10 @@ python sniffer.py
 ```
 
 To execute the program, use the following command:
-"sudo python3 main_gui.py"
+
+```bash
+sudo python3 main_gui.py"
+```
 
 Note: In this example, a virtual environment is not used. If you are using a virtual environment, replace python3 with the Python interpreter from your virtual environment.
 
