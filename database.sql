@@ -12,5 +12,6 @@ CREATE TABLE ebpf (
     Destination_Port INT,
     Packet_Length INT,
     Score_1 FLOAT,
-    Score_2 FLOAT
+    Score_2 FLOAT,
+    Malicious INT
 );
