@@ -76,11 +76,12 @@ def update_flows_and_write_csv(bpf, boot_time_ns, csv_writer, table_widget):
             score_1 = socket.ntohs(key.score1)
 
             # mirar
-            malicious = 0 if score_0 > 500000000000 else 1
+            malicious = 0
+            if score_0 < score_1:
+                malicious = 1 
 
             timestamp = ns_to_datetime(value.ts_last, boot_time_ns)
             pkt_length = value.byte_count
-            print("ADEUUU")
 
             cursor = connection.cursor()
             cursor.execute(
@@ -101,7 +102,7 @@ def update_flows_and_write_csv(bpf, boot_time_ns, csv_writer, table_widget):
                     malicious
                 )
             )
-            #connection.commit()
+            connection.commit()
 
 
             # Escribir datos en el archivo CSV
@@ -181,33 +182,7 @@ def tkinter_app(interface, bpf, boot_time_ns, csv_writer):
 
 
 
-
-
-
-
-
-
-            
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # --- PROGRAMA PRINCIPAL ---
-
-
-
 
 
 
