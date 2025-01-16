@@ -58,7 +58,6 @@ int capture_http_https(struct xdp_md *ctx) {
 
         // Procesar TCP
         if (ip->protocol == IPPROTO_TCP) {
-                            bpf_trace_printk("FLOWS EBPF\n");
             struct tcphdr *tcp = (struct tcphdr *)((void *)ip + sizeof(struct iphdr));
             if ((void *)tcp + sizeof(struct tcphdr) > data_end)
                 return XDP_PASS;
@@ -173,6 +172,9 @@ int capture_http_https(struct xdp_md *ctx) {
     if (metrics) {
         metrics->pkt_count += 1;
         metrics->byte_count += pkt_len;
+    } else {
+        new_metrics.pkt_count = 1;
+        new_metrics.ts_first = bpf_ktime_get_ns();
         new_metrics.ts_last = new_metrics.ts_first;
         new_metrics.byte_count = pkt_len;
         flows.update(&key, &new_metrics);
@@ -373,7 +375,7 @@ if (input[0] <= 2027.0) {
     u32 key_opt = 0;
     u64 *opt = user_options.lookup(&key_opt);
     if(opt!=0 && *opt==1){
-        if(output[0]<var0[1])
+        if(output[0]>var0[1])
             return XDP_DROP;
     }
 
