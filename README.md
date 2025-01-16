@@ -55,11 +55,6 @@ DB_NAME = 'your_database_name'
 ```
 ## Usage
 
-Run the sniffer with the following command **with root permission**:
-
-```bash
-python sniffer.py
-```
 
 To execute the program, use the following command:
 
