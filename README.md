@@ -8,6 +8,7 @@ This repository contains a network sniffer developed in eBPF that captures netwo
 - Real-time packet capture.
 - Storage of relevant packet data (IP addresses, ports, protocols, etc.) in a MySQL database.
 - Compatible with multiple network protocols.
+- (Optional) Integration with [Apache Superset](https://superset.apache.org/) to create dashboards about metrics from MySQL. 
 
 ## Prerequisites
 
@@ -32,7 +33,7 @@ Before running this project, make sure you have the following components install
 2. Install the required dependencies:
 
    ```bash
-   pip install -r requirements.txt
+   pip install -r ./eBPFCode/requirements.txt
    ```
 
 3. Configure the MySQL database:
@@ -51,7 +52,7 @@ DB_NAME = 'your_database_name'
 ```
 ## Usage
 
-Run the sniffer with the following command:
+Run the sniffer with the following command **with root permission**:
 
 ```bash
 python sniffer.py
