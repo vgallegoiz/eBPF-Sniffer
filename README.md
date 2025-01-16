@@ -17,6 +17,7 @@ Before running this project, make sure you have the following components install
 1. **Python 3.x**
 2. **Python Libraries:**
    - `scapy` for packet capture.
+   - `pcapy` for packet capture.
    - `mysql-connector-python` or `pymysql` for interacting with the MySQL database.
    -  `bcc`
    -  `ctypes`
