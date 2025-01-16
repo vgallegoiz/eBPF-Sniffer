@@ -18,6 +18,9 @@ Before running this project, make sure you have the following components install
 2. **Python Libraries:**
    - `scapy` for packet capture.
    - `mysql-connector-python` or `pymysql` for interacting with the MySQL database.
+   -  `bcc`
+   -  `ctypes`
+   -  `psutil`
 3. **MySQL Server:**
    - A database configured to store the packet data.
 
@@ -57,6 +60,12 @@ Run the sniffer with the following command **with root permission**:
 ```bash
 python sniffer.py
 ```
+
+To execute the program, use the following command:
+"sudo python3 main_gui.py"
+
+Note: In this example, a virtual environment is not used. If you are using a virtual environment, replace python3 with the Python interpreter from your virtual environment.
+
 
 ## Contributions
 
