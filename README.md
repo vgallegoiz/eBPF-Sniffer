@@ -8,7 +8,7 @@ This repository contains a network sniffer developed in eBPF that captures netwo
 - Real-time packet capture.
 - Storage of relevant packet data (IP addresses, ports, protocols, etc.) in a MySQL database.
 - Compatible with multiple network protocols.
-- (Optional) Integration with [Apache Superset](https://superset.apache.org/) to create dashboards about metrics from MySQL. 
+- (Optional) Integration with [Apache Superset](https://superset.apache.org/) to create dashboards about metrics stored in MySQL DB. 
 
 ## Prerequisites
 
