@@ -2,9 +2,7 @@ CREATE USER 'victor'@'%' IDENTIFIED BY 'password';
 GRANT ALL PRIVILEGES ON * . * TO 'victor'@'%';
 
 create database ebpf;
-use practica1;
 
-Con la siguiente tabla en SQL:
 CREATE TABLE ebpf (
     Protocol VARCHAR(10),
     Timestamp DATETIME,
