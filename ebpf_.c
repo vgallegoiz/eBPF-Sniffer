@@ -66,7 +66,7 @@ int capture_http_https(struct xdp_md *ctx) {
             key.dst_port = tcp->dest;
             key.protocol = IPPROTO_TCP;
             key.score0 = 0;
-            key.score1 = 0;
+            key.score1 = 0;            
         }
         // Procesar UDP
         else if (ip->protocol == IPPROTO_UDP) {
@@ -164,21 +164,6 @@ int capture_http_https(struct xdp_md *ctx) {
 
 
 ////////////////////////////
-
-    // Actualizar las métricas del flujo
-    struct flow_metrics_t *metrics = flows.lookup(&key);
-    struct flow_metrics_t new_metrics = {};
-
-    if (metrics) {
-        metrics->pkt_count += 1;
-        metrics->byte_count += pkt_len;
-    } else {
-        new_metrics.pkt_count = 1;
-        new_metrics.ts_first = bpf_ktime_get_ns();
-        new_metrics.ts_last = new_metrics.ts_first;
-        new_metrics.byte_count = pkt_len;
-        flows.update(&key, &new_metrics);
-    }
 
 ////////////////////////////
     u64 port80=0;
@@ -364,6 +349,8 @@ if (input[0] <= 2027.0) {
     }
 }
 
+                bpf_trace_printk("VAR 0 es igueal %d\n",var0[0]);
+                bpf_trace_printk("VAR 1 es igueal %d\n",var0[1]);
 
 
     output[0] = var0[0];
@@ -372,10 +359,31 @@ if (input[0] <= 2027.0) {
     key.score0 = var0[0];
     key.score1 = var0[1];
 
+
+    ////////////////////////////
+
+    // Actualizar las métricas del flujo
+    struct flow_metrics_t *metrics = flows.lookup(&key);
+    struct flow_metrics_t new_metrics = {};
+
+    if (metrics) {
+        metrics->pkt_count += 1;
+        metrics->byte_count += pkt_len;
+    } else {
+        new_metrics.pkt_count = 1;
+        new_metrics.ts_first = bpf_ktime_get_ns();
+        new_metrics.ts_last = new_metrics.ts_first;
+        new_metrics.byte_count = pkt_len;
+        flows.update(&key, &new_metrics);
+    }
+
+////////////////////////////
+
+
     u32 key_opt = 0;
     u64 *opt = user_options.lookup(&key_opt);
     if(opt!=0 && *opt==1){
-        if(output[0]>var0[1])
+        if(output[0]<var0[1])
             return XDP_DROP;
     }
 
