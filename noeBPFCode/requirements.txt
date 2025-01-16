@@ -1,0 +1,9 @@
+iniconfig==2.0.0
+numpy==2.2.1
+packaging==24.2
+pluggy==1.5.0
+PyMySQL==1.1.1
+pymysql2==1.3.3
+scapy==2.6.1
+traitlets==5.14.3
+traittypes==0.2.1
