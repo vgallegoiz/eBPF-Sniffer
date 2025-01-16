@@ -12,18 +12,13 @@ from pathlib import Path
 import csv
 import pymysql
 import sys
-from dotenv import load_dotenv
-import os
-
-# Cargar variables del archivo .env
-load_dotenv()
 
 # --- SQL ---
 connection = pymysql.connect(
-    host=os.getenv('DB_HOST'),
-    user=os.getenv('DB_USER'),
-    password=os.getenv('DB_PASSWORD'),
-    database=os.getenv('DB_DATABASE')
+    host='localhost',
+    user='root',
+    password='1234Pasd@2023',
+    database='ebpf'
 )
 
 # --- FUNCIONES AUXILIARES ---
@@ -77,8 +72,9 @@ def update_flows_and_write_csv(bpf, boot_time_ns, csv_writer, table_widget):
             src_port = socket.ntohs(key.src_port)
             dst_port = socket.ntohs(key.dst_port)
             protocol = get_protocol(src_port, dst_port)
-            score_0 = socket.ntohs(key.score0)
-            score_1 = socket.ntohs(key.score1)
+            score_0 = key.score0
+            score_1 = key.score1
+            print(key.score0)
 
             # mirar
             malicious = 0
