@@ -12,13 +12,18 @@ from pathlib import Path
 import csv
 import pymysql
 import sys
+from dotenv import load_dotenv
+import os
+
+# Cargar variables del archivo .env
+load_dotenv()
 
 # --- SQL ---
 connection = pymysql.connect(
-    host='localhost',
-    user='root',
-    password='1234Pasd@2023',
-    database='ebpf'
+    host=os.getenv('DB_HOST'),
+    user=os.getenv('DB_USER'),
+    password=os.getenv('DB_PASSWORD'),
+    database=os.getenv('DB_DATABASE')
 )
 
 # --- FUNCIONES AUXILIARES ---
