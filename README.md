@@ -60,11 +60,11 @@ DB_NAME = 'your_database_name'
 To execute the program, use the following command:
 
 ```bash
-sudo python3 main_gui.py
+sudo python3 main_gui.py ("admin")
 ```
 
 Note: In this example, a virtual environment is not used. If you are using a virtual environment, replace python3 with the Python interpreter from your virtual environment.
-
+There is an option to add an "admin" option to the program's execution command to allow the program to block packets.
 
 ## Contributions
 
